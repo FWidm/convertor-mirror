@@ -2,6 +2,7 @@
 
 use Olifolkerd\Convertor\Convertor;
 use Olifolkerd\Convertor\Exceptions\ConvertorException;
+use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -56,7 +57,7 @@ class Test extends TestCase
     /** @test */
     public function testUnitDoesNotExist()
     {
-        $this->expectException(ConvertorException::class);
+        $this->expectException(ConvertorInvalidUnitException::class);
         new Convertor(1, "nonsenseunit");
     }
 

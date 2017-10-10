@@ -187,7 +187,7 @@ class Convertor
                     $this->value = $this->convertToBase($value, $unitLookup);
                 }
             } else {
-                throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
+                throw new ConvertorInvalidUnitException("Conversion from Unit u=$unit not possible - unit does not exist.");
             }
         } else {
             $this->value = $value;
@@ -256,7 +256,7 @@ class Convertor
 
                 return $result;
             } else {
-                throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
+                throw new ConvertorInvalidUnitException("Conversion to Unit u=$unit not possible - unit does not exist.");
             }
         }
     }
@@ -376,7 +376,7 @@ class Convertor
             return true;
 
         } else {
-            throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
+            throw new ConvertorInvalidUnitException("Removal of Unit u=$unit not possible - unit does not exist.");
         }
     }
 
@@ -403,7 +403,7 @@ class Convertor
 
             return $unitList;
         } else {
-            throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
+            throw new ConvertorInvalidUnitException("Unit u=$unit Does Not Exist");
         }
     }
 
