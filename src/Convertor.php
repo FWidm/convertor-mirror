@@ -76,7 +76,7 @@ class Convertor
             "kg" => array("base" => "kg", "conversion" => 1), //kilogram - base unit for weight
             "g" => array("base" => "kg", "conversion" => 0.001), //gram
             "mg" => array("base" => "kg", "conversion" => 0.000001), //miligram
-            "N" => array("base" => "kg", "conversion" => 9.80665002863885), //Newton (based on earth gravity)
+            "N" => array("base" => "kg", "conversion" => 1/9.80665002863885), //Newton (based on earth gravity)
             "st" => array("base" => "kg", "conversion" => 6.35029), //stone
             "lb" => array("base" => "kg", "conversion" => 0.453592), //pound
             "oz" => array("base" => "kg", "conversion" => 0.0283495), //ounce
@@ -142,14 +142,14 @@ class Convertor
      * @param $value - to convert
      * @param $unit - base unit
      */
-    function __construct($value, $unit)
+    function __construct($value=null, $unit = null)
     {//
 
         //create units array
         $this->defineUnits();
 
         //unit optional
-        if (!is_null($value)) {
+        if (!is_null($value) && !is_null($unit)) {
 
             //set from unit
             $this->from($value, $unit);
@@ -173,18 +173,17 @@ class Convertor
         }
 
         if ($unit) {
-
             //check that unit exists
-            if (array_key_exists($unit, $this->units) || array_key_exists(strtolower($unit), $this->units)) {
+            if (array_key_exists($unit, $this->units)) {
                 if (isset($this->units[$unit]))
                     $unitLookup = $this->units[$unit];
-                else
-                    if (isset($this->units[strtolower($unit)]))
-                        $unitLookup = $this->units[strtolower($unit)];
 
-                //convert unit to base unit for this unit type
-                $this->baseUnit = $unitLookup["base"];
-                $this->value = $this->convertToBase($value, $unitLookup);
+                if (isset($unitLookup)) {
+
+                    //convert unit to base unit for this unit type
+                    $this->baseUnit = $unitLookup["base"];
+                    $this->value = $this->convertToBase($value, $unitLookup);
+                }
             } else {
                 throw new ConvertorException("Unit Does Not Exist");
             }
@@ -196,7 +195,7 @@ class Convertor
     /**
      * Convert from value to new unit
      *
-     * @param    string[] $unit -  the unit symbol (or array of symblos) for the conversion unit
+     * @param    mixed $unit -  the unit symbol (or array of symbols) for the conversion unit
      * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
      * @param    boolean $round (optional, default-true) - round or floor the conversion result
      * @return   mixed
@@ -206,7 +205,7 @@ class Convertor
 
         //check if from value is set
         if (is_null($this->value)) {
-            throw new ConvertorException("From Value Not Set");
+            throw new ConvertorException("From Value Not Set.");
         }
 
         //check if to unit is set
@@ -255,7 +254,7 @@ class Convertor
 
                 return $result;
             } else {
-                throw new ConvertorException("Unit Does Not Exist");
+                throw new ConvertorException("Unit unit=$unit Does Not Exist");
             }
         }
     }
