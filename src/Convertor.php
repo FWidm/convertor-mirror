@@ -11,7 +11,9 @@
 
 namespace Olifolkerd\Convertor;
 
+use Olifolkerd\Convertor\Exceptions\ConvertorDifferentTypeException;
 use Olifolkerd\Convertor\Exceptions\ConvertorException;
+use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 
 class Convertor
 {
@@ -185,7 +187,7 @@ class Convertor
                     $this->value = $this->convertToBase($value, $unitLookup);
                 }
             } else {
-                throw new ConvertorException("Unit Does Not Exist");
+                throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
             }
         } else {
             $this->value = $value;
@@ -226,7 +228,7 @@ class Convertor
                 //if from unit not provided, assume base unit of to unit type
                 if ($this->baseUnit) {
                     if ($unitLookup["base"] != $this->baseUnit) {
-                        throw new ConvertorException("Cannot Convert Between Units of Different Types");
+                        throw new ConvertorDifferentTypeException("Cannot Convert Between Units of Different Types");
                     }
                 } else {
                     $this->baseUnit = $unitLookup["base"];
@@ -254,7 +256,7 @@ class Convertor
 
                 return $result;
             } else {
-                throw new ConvertorException("Unit unit=$unit Does Not Exist");
+                throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
             }
         }
     }
@@ -374,7 +376,7 @@ class Convertor
             return true;
 
         } else {
-            throw new ConvertorException("Unit Does Not Exist");
+            throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
         }
     }
 
@@ -401,7 +403,7 @@ class Convertor
 
             return $unitList;
         } else {
-            throw new ConvertorException("Unit Does Not Exist");
+            throw new ConvertorInvalidUnitException("Unit unit=$unit Does Not Exist");
         }
     }
 
