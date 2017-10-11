@@ -44,6 +44,34 @@ class Test extends TestCase
         $this->assertEquals(0.9806649999787735,$val['N'],"Not inside of float delta",0.00001);
     }
 
+    /** @test */
+    public function testPressure()
+    {
+        $conv = new Convertor();
+        $conv->from(100,'pa');
+        $val=$conv->toAll(6,true);
+        // http://convert-units.info/pressure/hectopascal/1
+        $this->assertEquals(100,$val['pa'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1,$val['hpa'],"Not inside of float delta",0.00001);
+        $this->assertEquals(.1,$val['kpa'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.0001,$val['mpa'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.001,$val['bar'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1,$val['mbar'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.0145038,$val['psi'],"Not inside of float delta",0.00001);
+    }
+
+    /** @test */
+    public function testPerArea()
+    {
+        $conv = new Convertor();
+        $conv->from(100,'m**-2');
+        $val=$conv->toAll(6,true);
+        $this->assertEquals(100,$val['m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-4,$val['mm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-2,$val['cm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e8,$val['km**-2'],"Not inside of float delta",0.00001);
+    }
+
     //todo: add tests for all other conversions.
 
     /** @test */

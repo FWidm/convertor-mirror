@@ -51,14 +51,20 @@ class Convertor
 
 
             ///////Units Of Area///////
-            "m2" => array("base" => "m2", "conversion" => 1), //meter square - base unit for area
-            "km2" => array("base" => "m2", "conversion" => 1000000), //kilometer square
-            "cm2" => array("base" => "m2", "conversion" => 0.0001), //centimeter square
-            "mm2" => array("base" => "m2", "conversion" => 0.000001), //milimeter square
-            "ft2" => array("base" => "m2", "conversion" => 0.092903), //foot square
-            "mi2" => array("base" => "m2", "conversion" => 2589988.11), //mile square
-            "ac" => array("base" => "m2", "conversion" => 4046.86), //acre
-            "ha" => array("base" => "m2", "conversion" => 10000), //hectare
+            "m**2" => array("base" => "m**2", "conversion" => 1), //meter square - base unit for area
+            "km2" => array("base" => "m**2", "conversion" => 1000000), //kilometer square
+            "cm**2" => array("base" => "m**2", "conversion" => 0.0001), //centimeter square
+            "mm**2" => array("base" => "m**2", "conversion" => 0.000001), //milimeter square
+            "ft**2" => array("base" => "m**2", "conversion" => 0.092903), //foot square
+            "mi**2" => array("base" => "m**2", "conversion" => 2589988.11), //mile square
+            "ac" => array("base" => "m**2", "conversion" => 4046.86), //acre
+            "ha" => array("base" => "m**2", "conversion" => 10000), //hectare
+
+            ///////Units Of Area2///////
+            "m**-2" => array("base" => "m**-2", "conversion" => 1),
+            "km**-2" => array("base" => "m**-2", "conversion" => 0.000001),
+            "cm**-2" => array("base" => "m**-2", "conversion" => 1e4),
+            "mm**-2" => array("base" => "m**-2", "conversion" => 1e6),
 
             ///////Units Of Volume///////
             "dm3" => array("base" => "l", "conversion" => 1), //cubic decimeter - litre
@@ -105,12 +111,13 @@ class Convertor
             }), //Fahrenheit
 
             ///////Units Of Pressure///////
-            "pa" => array("base" => "Pa", "conversion" => 1), //Pascal - base unit for Pressure
-            "kpa" => array("base" => "Pa", "conversion" => 1000), //kilopascal
-            "mpa" => array("base" => "Pa", "conversion" => 1000000), //megapascal
-            "bar" => array("base" => "Pa", "conversion" => 100000), //bar
-            "mbar" => array("base" => "Pa", "conversion" => 100), //milibar
-            "psi" => array("base" => "Pa", "conversion" => 6894.76), //pound-force per square inch
+            "pa" => array("base" => "pa", "conversion" => 1), //Pascal - base unit for Pressure
+            "hpa" => array("base" => "pa", "conversion" => 100), //hpa
+            "kpa" => array("base" => "pa", "conversion" => 1000), //kilopascal
+            "mpa" => array("base" => "pa", "conversion" => 1000000), //megapascal
+            "bar" => array("base" => "pa", "conversion" => 100000), //bar
+            "mbar" => array("base" => "pa", "conversion" => 100), //milibar
+            "psi" => array("base" => "pa", "conversion" => 6894.76), //pound-force per square inch
 
             ///////Units Of Time///////
             "s" => array("base" => "s", "conversion" => 1), //second - base unit for time
