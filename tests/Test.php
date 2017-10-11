@@ -61,15 +61,20 @@ class Test extends TestCase
     }
 
     /** @test */
-    public function testPerArea()
+    public function testAreaDensity()
     {
         $conv = new Convertor();
-        $conv->from(100,'m**-2');
+        $conv->from(1,'kg m**-2');
         $val=$conv->toAll(6,true);
-        $this->assertEquals(100,$val['m**-2'],"Not inside of float delta",0.00001);
-        $this->assertEquals(1e-4,$val['mm**-2'],"Not inside of float delta",0.00001);
-        $this->assertEquals(1e-2,$val['cm**-2'],"Not inside of float delta",0.00001);
-        $this->assertEquals(1e8,$val['km**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1,$val['kg m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000000,$val['kg km**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-4,$val['kg cm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-6,$val['kg mm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000,$val['g m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000000,$val['mg m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.157473,$val['st m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(2.20462,$val['lb m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(35.274,$val['oz m**-2'],"Not inside of float delta",0.00001);
     }
 
     //todo: add tests for all other conversions.

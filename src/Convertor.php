@@ -137,11 +137,19 @@ class Convertor
             "mwhr" => array("base" => "j", "conversion" => 3600000000), //megawatt hour
             "mev" => array("base" => "j", "conversion" => 0.00000000000000016), //mega electron volt
 
-            ///////Additional units///////
-            "m**-2" => array("base" => "m**-2", "conversion" => 1),
-            "km**-2" => array("base" => "m**-2", "conversion" => 0.000001),
-            "cm**-2" => array("base" => "m**-2", "conversion" => 1e4),
-            "mm**-2" => array("base" => "m**-2", "conversion" => 1e6),
+            ///////Area density///////
+            "kg m**-2" => array("base" => "kg m**-2", "conversion" => 1),
+            //vary area
+            "kg km**-2" => array("base" => "kg m**-2", "conversion" => 0.000001),
+            "kg cm**-2" => array("base" => "kg m**-2", "conversion" => 1e4),
+            "kg mm**-2" => array("base" => "kg m**-2", "conversion" => 1e6),
+            //vary weight
+            "g m**-2" => array("base" => "kg m**-2", "conversion" => 0.001), //gram
+            "mg m**-2" => array("base" => "kg m**-2", "conversion" => 0.000001), //miligram
+            "st m**-2" => array("base" => "kg m**-2", "conversion" => 6.35029), //stone
+            "lb m**-2" => array("base" => "kg m**-2", "conversion" => 0.453592), //pound
+            "oz m**-2" => array("base" => "kg m**-2", "conversion" => 0.0283495), //ounce
+            //todo: add your density conversions here if you need them.
 
         );
     }
