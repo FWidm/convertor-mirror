@@ -52,19 +52,13 @@ class Convertor
 
             ///////Units Of Area///////
             "m**2" => array("base" => "m**2", "conversion" => 1), //meter square - base unit for area
-            "km2" => array("base" => "m**2", "conversion" => 1000000), //kilometer square
+            "km**2" => array("base" => "m**2", "conversion" => 1000000), //kilometer square
             "cm**2" => array("base" => "m**2", "conversion" => 0.0001), //centimeter square
             "mm**2" => array("base" => "m**2", "conversion" => 0.000001), //milimeter square
             "ft**2" => array("base" => "m**2", "conversion" => 0.092903), //foot square
             "mi**2" => array("base" => "m**2", "conversion" => 2589988.11), //mile square
             "ac" => array("base" => "m**2", "conversion" => 4046.86), //acre
             "ha" => array("base" => "m**2", "conversion" => 10000), //hectare
-
-            ///////Units Of Area2///////
-            "m**-2" => array("base" => "m**-2", "conversion" => 1),
-            "km**-2" => array("base" => "m**-2", "conversion" => 0.000001),
-            "cm**-2" => array("base" => "m**-2", "conversion" => 1e4),
-            "mm**-2" => array("base" => "m**-2", "conversion" => 1e6),
 
             ///////Units Of Volume///////
             "dm3" => array("base" => "l", "conversion" => 1), //cubic decimeter - litre
@@ -84,7 +78,7 @@ class Convertor
             "kg" => array("base" => "kg", "conversion" => 1), //kilogram - base unit for weight
             "g" => array("base" => "kg", "conversion" => 0.001), //gram
             "mg" => array("base" => "kg", "conversion" => 0.000001), //miligram
-            "N" => array("base" => "kg", "conversion" => 1/9.80665002863885), //Newton (based on earth gravity)
+            "N" => array("base" => "kg", "conversion" => 1 / 9.80665002863885), //Newton (based on earth gravity)
             "st" => array("base" => "kg", "conversion" => 6.35029), //stone
             "lb" => array("base" => "kg", "conversion" => 0.453592), //pound
             "oz" => array("base" => "kg", "conversion" => 0.0283495), //ounce
@@ -142,6 +136,13 @@ class Convertor
             "kwhr" => array("base" => "j", "conversion" => 3600000), //kilowatt hour
             "mwhr" => array("base" => "j", "conversion" => 3600000000), //megawatt hour
             "mev" => array("base" => "j", "conversion" => 0.00000000000000016), //mega electron volt
+
+            ///////Additional units///////
+            "m**-2" => array("base" => "m**-2", "conversion" => 1),
+            "km**-2" => array("base" => "m**-2", "conversion" => 0.000001),
+            "cm**-2" => array("base" => "m**-2", "conversion" => 1e4),
+            "mm**-2" => array("base" => "m**-2", "conversion" => 1e6),
+
         );
     }
 
@@ -151,7 +152,7 @@ class Convertor
      * @param $value - to convert
      * @param $unit - base unit
      */
-    function __construct($value=null, $unit = null)
+    function __construct($value = null, $unit = null)
     {//
 
         //create units array
