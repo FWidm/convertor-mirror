@@ -117,11 +117,12 @@ class Test extends TestCase
         $this->assertEquals(5e9,$val['µm'],"Not inside of float delta",$delta);
         $this->assertEquals(5e12,$val['nm'],"Not inside of float delta",$delta);
         $this->assertEquals(5e15,$val['pm'],"Not inside of float delta",$delta);
-        $this->assertEquals(196850,$val['in'],"Not inside of float delta",$delta);
+        $this->assertEquals(196850.394,$val['in'],"Not inside of float delta",0.001);
         $this->assertEquals(16404.2,$val['ft'],"Not inside of float delta",0.01);
         $this->assertEquals(5468.07,$val['yd'],"Not inside of float delta",0.01);
         $this->assertEquals(3.10686,$val['mi'],"Not inside of float delta",$delta);
-        $this->assertEquals(196850/4,$val['h'],"Not inside of float delta",$delta);
+        // 1h=4inch
+        $this->assertEquals(196850.394/4,$val['h'],"Not inside of float delta",$delta);
         $this->assertEquals(5.285e-13,$val['ly'],"Not inside of float delta",$delta);
         $this->assertEquals(3.34229e-8,$val['au'],"Not inside of float delta",$delta);
         $this->assertEquals(1.62038965e-13,$val['pc'],"Not inside of float delta",$delta);
