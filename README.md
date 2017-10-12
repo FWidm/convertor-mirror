@@ -54,17 +54,14 @@ $simpleConvertor->to("ft"); //returns converted value
 
 Define your own Units
 ================================
-Convertor now supports using different files that contain the unit conversions by specifying the path to the file containing the unit array:
+Convertor now supports using different files that contain the unit conversions by specifying either the path to the file containing the unit array or the filename of the file in `src/config`directly:
 ```php
-$c=new \Olifolkerd\Convertor\Convertor(100,"mps",'src/Config/BaseUnits.php');
-var_dump($c->toAll());
-```
-prints out:
-```
-array (size=3)
-  'mps' => int 100
-  'mph' => float 223.69362920544
-  'kph' => float 359.99971200023
+//using the default file in `src/Config/Units.php`:
+$c=new Convertor(100,"mps");
+//using another file somewhere in the project:
+$c=new Convertor(100,"mps",'/path/to/my/own/Units.php');
+//using the name of the file in conf:
+$c=new Convertor(100,"mps",'BaseUnits.php');
 ```
 
 Currently two Unit files are available - one containing the owner's notation and the other one a more formal notation.

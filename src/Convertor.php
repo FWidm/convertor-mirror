@@ -27,23 +27,24 @@ class Convertor
 
 
     /**
-     * Load the units from the given php file.
+     * Allow switching between different unit definition files. Defaults to src/Config/Units.php
+     * @param $unitFile - either the filename in src/Config folder OR a path to another file that exists.
+     * @throws FileNotFoundException if the file does not exist.
      */
     function defineUnits($unitFile)
     {
         $configDir = __DIR__ . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR;
-        //default to the newest Units file
+        //default to the newest Units.php file
         if (!isset($unitFile))
             $unitFile = $configDir . 'Units.php';
         //if only the filename is given and it exists in the config folder add the path to the file
-        print strpos($unitFile, '/');
         if ($unitFile) {
             $configFiles = scandir($configDir);
             if (in_array($unitFile, $configFiles))
                 $unitFile = $configDir . $unitFile;
         }
 
-        //lastly check if the file exists, then include.
+        //lastly check if the file exists, then include or throw an error.
         if(file_exists($unitFile))
           $this->units = include $unitFile;
         else
