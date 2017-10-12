@@ -40,6 +40,7 @@ Include the library
 include("Convertor.php");
 ```
 
+
 Simple Example
 ================================
 
@@ -51,6 +52,30 @@ $simpleConvertor->to("ft"); //returns converted value
 ```
 10 Meters = 32.808398950131 Feet
 
+Define your own Units
+================================
+Convertor now supports using different files that contain the unit conversions by specifying the path to the file containing the unit array:
+```php
+$c=new \Olifolkerd\Convertor\Convertor(100,"mps",'src/Config/BaseUnits.php');
+var_dump($c->toAll());
+```
+prints out:
+```
+array (size=3)
+  'mps' => int 100
+  'mph' => float 223.69362920544
+  'kph' => float 359.99971200023
+```
+
+Currently two Unit files are available - one containing the owner's notation and the other one a more formal notation.
+Differences in notation:
+
+| Variant | km²     | kg/m²      | FileName        |
+|---------|---------|------------|-----------------|
+| owner   | 'km2'   | -          | `BaseUnits.php` |
+| formal  | 'km**2' | 'kg m**-2' | `Units.php`     |
+
+Additionally the `Units.php` file contains area-density definitions.
 Resources
 ================================
 - PHP-Skeleton as a template for the autoloading structure: [github](https://github.com/petk/php-skeleton)

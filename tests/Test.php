@@ -5,13 +5,25 @@ use Olifolkerd\Convertor\Exceptions\ConvertorException;
 use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 use PHPUnit\Framework\TestCase;
 
+//todo: add tests for all other conversions.
+
 /**
- * User: Fabian Widmann
- * Date: 10.10.17
- * Time: 15:23
+ * Class Test
+ * Provides tests for the convertor to make sure conversions are fine
+ * Currently tested unit groups are:
+ * - Temperature
+ * - Weight
+ * - Pressure
+ * - Area density
+ * - Speeds
+ * wip:
+ * - Distance/Length
+ * todo:
+ * - area
+ * - volume
+ * - time
+ * - power
  */
-
-
 class Test extends TestCase
 {
 
@@ -76,8 +88,21 @@ class Test extends TestCase
         $this->assertEquals(2.20462,$val['lb m**-2'],"Not inside of float delta",0.00001);
         $this->assertEquals(35.274,$val['oz m**-2'],"Not inside of float delta",0.00001);
     }
-
-    //todo: add tests for all other conversions.
+    /** @test */
+    public function testSpeeds()
+    {
+        $conv = new Convertor();
+        $conv->from(3,'km h**-1');
+        $val=$conv->toAll(6,true);
+        $this->assertEquals(0.83333,$val['m s**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(3,$val['km h**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1.86411,$val['mi h**-1'],"Not inside of float delta",0.00001);
+        $conv->from(100,'m s**-1');
+        $val=$conv->toAll(3,true);
+        $this->assertEquals(100,$val['m s**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(360,$val['km h**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(223.694,$val['mi h**-1'],"Not inside of float delta",0.0001);
+    }
 
     /** @test */
     public function testDistance()
