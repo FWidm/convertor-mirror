@@ -16,12 +16,11 @@ use PHPUnit\Framework\TestCase;
  * - Pressure
  * - Area density
  * - Speeds
- * wip:
- * - Distance/Length
+ * - Distance
+ * - time
  * todo:
  * - area
  * - volume
- * - time
  * - power
  */
 class Test extends TestCase
@@ -107,11 +106,49 @@ class Test extends TestCase
     /** @test */
     public function testDistance()
     {
-        $conv = new Convertor(1, "km");
-        $this->assertEquals(1000, $conv->to("m"));
-        $this->assertLessThanOrEqual(3280.84, $conv->to("ft"));
+        $conv = new Convertor();
+        $conv->from(5,'km');
+        $val=$conv->toAll(6,true);
+        $delta=1e-4;
+        $this->assertEquals(5e3,$val['m'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e4,$val['dm'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e5,$val['cm'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e6,$val['mm'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e9,$val['µm'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e12,$val['nm'],"Not inside of float delta",$delta);
+        $this->assertEquals(5e15,$val['pm'],"Not inside of float delta",$delta);
+        $this->assertEquals(196850,$val['in'],"Not inside of float delta",$delta);
+        $this->assertEquals(16404.2,$val['ft'],"Not inside of float delta",0.01);
+        $this->assertEquals(5468.07,$val['yd'],"Not inside of float delta",0.01);
+        $this->assertEquals(3.10686,$val['mi'],"Not inside of float delta",$delta);
+        $this->assertEquals(196850/4,$val['h'],"Not inside of float delta",$delta);
+        $this->assertEquals(5.285e-13,$val['ly'],"Not inside of float delta",$delta);
+        $this->assertEquals(3.34229e-8,$val['au'],"Not inside of float delta",$delta);
+        $this->assertEquals(1.62038965e-13,$val['pc'],"Not inside of float delta",$delta);
+
+        //test big units
+        $conv->from(3.086e+16,'km');
+        $this->assertEquals(1000.1,$conv->to('pc'),"Not inside of float delta",0.01);
+        $this->assertEquals(206286358.59320423007,$conv->to('au'),"Not inside of float delta",$delta);
+        $this->assertEquals(3261.9045737999631456,$conv->to('ly'),"Not inside of float delta",$delta);
     }
 
+    /** @test */
+    public function testTime(){
+        $conv = new Convertor();
+        $conv->from(100,'hr');
+        $val=$conv->toAll(6,true);
+        $delta=1e-4;
+        $this->assertEquals(100*60*60,$val['s'],"Not inside of float delta",$delta);
+        $this->assertEquals(100*60,$val['min'],"Not inside of float delta",$delta);
+        $this->assertEquals(100,$val['hr'],"Not inside of float delta",$delta);
+        $this->assertEquals(100/24,$val['day'],"Not inside of float delta",$delta);
+        $this->assertEquals(100/24/7,$val['week'],"Not inside of float delta",$delta);
+        $this->assertEquals(100/24/7/31,$val['month'],"Not inside of float delta",$delta);
+        $this->assertEquals(100/24/365,$val['year'],"Not inside of float delta",$delta);
+        $this->assertEquals(100*60*60*1000,$val['ms'],"Not inside of float delta",$delta);
+        $this->assertEquals(3600*1e+11,$val['ns'],"Not inside of float delta",$delta);
+    }
     /** @test */
     public function testUnitDoesNotExist()
     {
