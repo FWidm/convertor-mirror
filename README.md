@@ -73,6 +73,8 @@ Differences in notation:
 | formal  | 'km**2' | 'kg m**-2' | `Units.php`     |
 
 Additionally the `Units.php` file contains area-density definitions.
+
+
 Resources
 ================================
 - PHP-Skeleton as a template for the autoloading structure: [github](https://github.com/petk/php-skeleton)
