@@ -45,8 +45,8 @@ class Convertor
         }
 
         //lastly check if the file exists, then include or throw an error.
-        if(file_exists($unitFile))
-          $this->units = include $unitFile;
+        if (file_exists($unitFile))
+            $this->units = include $unitFile;
         else
             throw new FileNotFoundException("File could not be found. Given path='$unitFile'" .
                 "either use the name of one of the pre defined configuration files or pass the complete path to the file.");
@@ -82,8 +82,7 @@ class Convertor
      * @throws ConvertorException - general errors
      * @throws ConvertorInvalidUnitException - specific invalid unit exception
      */
-    public
-    function from($value, $unit)
+    public function from($value, $unit)
     {
 
         //check if value has been set
@@ -119,8 +118,7 @@ class Convertor
      * @param    boolean $round (optional, default-true) - round or floor the conversion result
      * @return   mixed
      */
-    public
-    function to($unit, $decimals = null, $round = true)
+    public function to($unit, $decimals = null, $round = true)
     {
 
         //check if from value is set
@@ -187,8 +185,7 @@ class Convertor
      * @param    boolean $round (optional, default-true) - round or floor the conversion result
      * @return   array - results of the coversions
      */
-    private
-    function toMany($unitList = [], $decimals = null, $round = true)
+    private function toMany($unitList = [], $decimals = null, $round = true)
     {
 
         $resultList = array();
@@ -209,8 +206,7 @@ class Convertor
      * @param    boolean $round (optional, default-true) - round or floor the conversion result
      * @return   array - results of conversion to all units with matching base units
      */
-    public
-    function toAll($decimals = null, $round = true)
+    public function toAll($decimals = null, $round = true)
     {
 
         //ensure the from value has been set correctly
@@ -248,8 +244,7 @@ class Convertor
      * @param    number /function() - the conversion ration or conversion function from this unit to its base unit
      * @return   boolean - true - if successfull
      */
-    public
-    function addUnit($unit, $base, $conversion)
+    public function addUnit($unit, $base, $conversion)
     {
 
         //check that the new unit does not ealread exist
@@ -275,8 +270,7 @@ class Convertor
      * @param    string $unit - the symbol for the unit to be removed
      * @return   boolean - true - if successful
      */
-    public
-    function removeUnit($unit)
+    public function removeUnit($unit)
     {
         //check unit exists
         if (array_key_exists($unit, $this->units)) {
@@ -308,8 +302,7 @@ class Convertor
      * @param    string $unit - the symbol to search for available conversion units
      * @return   array - list of all available conversion units
      */
-    public
-    function getUnits($unit)
+    public function getUnits($unit)
     {
         //check that unit exists
         if (array_key_exists($unit, $this->units)) {
@@ -337,8 +330,7 @@ class Convertor
      * @param    array $unitArray - unit array from object units array
      * @return   number - converted value
      */
-    private
-    function convertToBase($value, $unitArray)
+    private function convertToBase($value, $unitArray)
     {
 
         if (is_callable($unitArray["conversion"])) {

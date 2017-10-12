@@ -1,7 +1,6 @@
 <?php
 
 use Olifolkerd\Convertor\Convertor;
-use Olifolkerd\Convertor\Exceptions\ConvertorException;
 use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 use PHPUnit\Framework\TestCase;
 
