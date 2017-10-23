@@ -4,7 +4,7 @@ An easy to use PHP unit conversion library.
 
 Full documentation & demos can be found at: [http://olifolkerd.github.io/convertor](http://olifolkerd.github.io/convertor)
 
-Convertor
+Convertor - forked from [the original Convertor repository.](https://github.com/olifolkerd/convertor)
 ================================
 
 An easy to use PHP unit conversion library.
@@ -27,19 +27,27 @@ Convertor can handle a wide range of unit types including:
 	<li>Energy/Power</li>
 </ul>
 
-See [The Documentation](http://olifolkerd.github.io/convertor) for full list of units in Convertor.
-
 If you need aditional unit types, then it is easy to add your own.
 
 Setup
 ================================
-Setting up Convertor could not be simpler.
-
-Include the library
-```php
-include("Convertor.php");
+Setting up Convertor could not be simpler by using Composer.
+Add the following to your `composer.json` file:
 ```
-
+"repositories": [
+	...
+	{
+		"type": "vcs",
+		"url": "https://github.com/FWidm/convertor"
+	}
+	...
+],
+"require": {
+	...
+	"olifolkerd/convertor": "dev-master",
+	...
+}
+```
 
 Simple Example
 ================================
